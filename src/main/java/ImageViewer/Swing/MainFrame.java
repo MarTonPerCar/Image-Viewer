@@ -14,8 +14,9 @@ public class MainFrame extends JFrame implements Image{
     private int actualValue = 0;
     JButton botonPrev = new JButton("Prev");
     JButton botonNext = new JButton("Next");
+    JLabel imageLabel = new JLabel();
 
-    public MainFrame(List<BaseImage> iP)  {
+    public MainFrame(List<String> iP)  {
         this.setTitle("Image Viewer");
         this.setSize(720,600);
         this.setLocationRelativeTo(null);
@@ -32,8 +33,9 @@ public class MainFrame extends JFrame implements Image{
 
         add(panel);
     }
-    private void nuevoLabel(List<BaseImage> iP, int imagen, JPanel panel) {
-        ImageIcon imageIcon = new ImageIcon(iP.get(imagen).path());
+
+    private void nuevoLabel(List<String> iP, int imagen, JPanel panel) {
+        ImageIcon imageIcon = new ImageIcon(iP.get(imagen));
         JLabel imageLabel = new JLabel(imageIcon);
         panel.add(imageLabel, BorderLayout.NORTH);
     }
@@ -50,7 +52,7 @@ public class MainFrame extends JFrame implements Image{
         panel.add(panelBotones, BorderLayout.SOUTH);
     }
 
-    private void agregarAccion(List<BaseImage> ListImage, JPanel panel) {
+    private void agregarAccion(List<String> ListImage, JPanel panel) {
         ActionListener actionPrev = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
