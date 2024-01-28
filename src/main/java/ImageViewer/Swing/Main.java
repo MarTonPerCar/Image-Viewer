@@ -1,9 +1,7 @@
 package ImageViewer.Swing;
 
-import ImageViewer.BaseImage;
+import ImageViewer.ImageReader;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {

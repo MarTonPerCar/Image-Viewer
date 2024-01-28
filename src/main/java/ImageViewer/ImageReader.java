@@ -1,4 +1,4 @@
-package ImageViewer.Swing;
+package ImageViewer;
 
 import java.io.File;
 import java.util.ArrayList;

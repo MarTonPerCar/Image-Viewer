@@ -1,13 +1,15 @@
 package ImageViewer.Swing;
 
-import ImageViewer.BaseImage;
 import ImageViewer.Image;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class MainFrame extends JFrame implements Image{
@@ -18,38 +20,48 @@ public class MainFrame extends JFrame implements Image{
 
     public MainFrame(List<String> iP)  {
         this.setTitle("Image Viewer");
-        this.setSize(720,600);
+        this.setSize(520,420);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel(null);
         panel.setBackground(Color.lightGray);
-        panel.setBorder(new EmptyBorder(10, 0, 0, 0));
 
         agregarBotones(panel);
         agregarAccion(iP, panel);
-
-        nuevoLabel(iP, actualValue, panel);
-
-        add(panel);
+        nuevoLabel(iP.get(actualValue), panel);
     }
 
-    private void nuevoLabel(List<String> iP, int imagen, JPanel panel) {
-        ImageIcon imageIcon = new ImageIcon(iP.get(imagen));
-        JLabel imageLabel = new JLabel(imageIcon);
-        panel.add(imageLabel, BorderLayout.NORTH);
+    public void nuevoLabel(String imagePath, JPanel panel) {
+        try {
+            BufferedImage originalImage = ImageIO.read(new File(imagePath));
+            java.awt.Image resizedImage = originalImage.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+            if (imageLabel != null) {
+                panel.remove(imageLabel);
+            }
+            imageLabel = new JLabel(resizedIcon);
+            imageLabel.setBounds(0, 0, resizedIcon.getIconWidth(), resizedIcon.getIconHeight());
+            imageLabel.setLocation(30, 80);
+
+            panel.add(imageLabel);
+            panel.revalidate();
+            panel.repaint();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void agregarBotones(JPanel panel) {
-        botonPrev.setPreferredSize(new Dimension(210, 30));
-        botonNext.setPreferredSize(new Dimension(210, 30));
+        botonNext.setBounds(280, 120, 200, 60);
+        botonPrev.setBounds(280, 190, 200, 60);
 
-        JPanel panelBotones = new JPanel(new BorderLayout());
-        panelBotones.setBackground(Color.lightGray);
+        panel.add(botonNext);
+        panel.add(botonPrev);
 
-        panelBotones.add(botonPrev, BorderLayout.WEST);
-        panelBotones.add(botonNext, BorderLayout.EAST);
-        panel.add(panelBotones, BorderLayout.SOUTH);
+        add(panel);
     }
 
     private void agregarAccion(List<String> ListImage, JPanel panel) {
@@ -57,16 +69,14 @@ public class MainFrame extends JFrame implements Image{
             @Override
             public void actionPerformed(ActionEvent e) {
                 prev(ListImage.size());
-                nuevoLabel(ListImage, actualValue, panel);
-                System.out.println(actualValue);
+                nuevoLabel(ListImage.get(actualValue), panel);
             }
         };
         ActionListener actionNext = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 next(ListImage.size());
-                nuevoLabel(ListImage, actualValue, panel);
-                System.out.println(actualValue);
+                nuevoLabel(ListImage.get(actualValue), panel);
             }
         };
 
