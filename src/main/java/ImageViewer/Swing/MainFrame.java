@@ -2,11 +2,9 @@ package ImageViewer.Swing;
 
 import ImageViewer.Image;
 import ImageViewer.ImageReader;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,13 +30,16 @@ public class MainFrame extends JFrame implements Image{
 
     private void inicializarComponentes(String defaultDirectory) {
         List<String> imagePaths = ImageReader.obtenerRutasImagenes(defaultDirectory);
+        if (imagePaths == null) {
+            JOptionPane.showMessageDialog(this, "Este directorio esta vacio");
+        } else {
+            JPanel panel = new JPanel(null);
+            panel.setBackground(Color.lightGray);
 
-        JPanel panel = new JPanel(null);
-        panel.setBackground(Color.lightGray);
-
-        agregarBotones(panel);
-        agregarAccion(imagePaths, panel);
-        nuevoLabel(imagePaths.get(actualValue), panel);
+            agregarBotones(panel);
+            agregarAccion(imagePaths, panel);
+            nuevoLabel(imagePaths.get(actualValue), panel);
+        }
     }
 
     private void nuevoLabel(String imagePath, JPanel panel) {
@@ -85,29 +86,20 @@ public class MainFrame extends JFrame implements Image{
             botonNext.removeActionListener(botonNext.getActionListeners()[0]);
             botonDirectory.removeActionListener(botonDirectory.getActionListeners()[0]);
         }
-        ActionListener actionPrev = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                prev(ListImage.size());
-                nuevoLabel(ListImage.get(actualValue), panel);
-            }
+        ActionListener actionPrev = e -> {
+            prev(ListImage.size());
+            nuevoLabel(ListImage.get(actualValue), panel);
         };
-        ActionListener actionNext = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                next(ListImage.size());
-                nuevoLabel(ListImage.get(actualValue), panel);
-            }
+        ActionListener actionNext = e -> {
+            next(ListImage.size());
+            nuevoLabel(ListImage.get(actualValue), panel);
         };
 
-        ActionListener actionDirectory = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String newDirectory = chooseDirectory();
-                if (newDirectory != null) {
-                    actualValue = 0;
-                    inicializarComponentes(newDirectory);
-                }
+        ActionListener actionDirectory = e -> {
+            String newDirectory = chooseDirectory();
+            if (newDirectory != null) {
+                actualValue = 0;
+                inicializarComponentes(newDirectory);
             }
         };
 
@@ -132,8 +124,7 @@ public class MainFrame extends JFrame implements Image{
 
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedDirectoryFile = fileChooser.getSelectedFile();
-            String selectedDirectory = selectedDirectoryFile.getAbsolutePath();
-            return selectedDirectory;
+            return selectedDirectoryFile.getAbsolutePath();
         } else {
             JOptionPane.showMessageDialog(this, "Este directorio no se puede usar");
             return null;

@@ -13,6 +13,9 @@ public class ImageReader {
 
         if (carpeta.exists() && carpeta.isDirectory()) {
             File[] archivos = carpeta.listFiles();
+            if (archivos == null || archivos.length == 0) {
+                return null;
+            }
             List<String> extensionesImagenes = Arrays.asList("jpg", "jpeg", "png");
             for (File archivo : archivos) {
                 if (archivo.isFile() && esImagen(archivo, extensionesImagenes)) {
