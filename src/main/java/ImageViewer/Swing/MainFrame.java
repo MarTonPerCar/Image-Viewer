@@ -1,16 +1,23 @@
 package ImageViewer.Swing;
 
 import ImageViewer.BaseImage;
+import ImageViewer.Image;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Image{
+    private int actualValue = 0;
+    JButton botonPrev = new JButton("Prev");
+    JButton botonNext = new JButton("Next");
+
     public MainFrame(List<BaseImage> iP)  {
         this.setTitle("Image Viewer");
-        this.setSize(520,400);
+        this.setSize(720,600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -18,12 +25,13 @@ public class MainFrame extends JFrame {
         panel.setBackground(Color.lightGray);
         panel.setBorder(new EmptyBorder(10, 0, 0, 0));
 
-        nuevoLabel(iP, 0, panel);
         agregarBotones(panel);
+        agregarAccion(iP, panel);
+
+        nuevoLabel(iP, actualValue, panel);
 
         add(panel);
     }
-
     private void nuevoLabel(List<BaseImage> iP, int imagen, JPanel panel) {
         ImageIcon imageIcon = new ImageIcon(iP.get(imagen).path());
         JLabel imageLabel = new JLabel(imageIcon);
@@ -31,17 +39,54 @@ public class MainFrame extends JFrame {
     }
 
     private void agregarBotones(JPanel panel) {
-        JButton botonIzquierdo = new JButton("Prev");
-        JButton botonDerecho = new JButton("Next");
-
-        botonIzquierdo.setPreferredSize(new Dimension(210, 30));
-        botonDerecho.setPreferredSize(new Dimension(210, 30));
+        botonPrev.setPreferredSize(new Dimension(210, 30));
+        botonNext.setPreferredSize(new Dimension(210, 30));
 
         JPanel panelBotones = new JPanel(new BorderLayout());
         panelBotones.setBackground(Color.lightGray);
 
-        panelBotones.add(botonIzquierdo, BorderLayout.WEST);
-        panelBotones.add(botonDerecho, BorderLayout.EAST);
+        panelBotones.add(botonPrev, BorderLayout.WEST);
+        panelBotones.add(botonNext, BorderLayout.EAST);
         panel.add(panelBotones, BorderLayout.SOUTH);
+    }
+
+    private void agregarAccion(List<BaseImage> ListImage, JPanel panel) {
+        ActionListener actionPrev = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                prev(ListImage.size());
+                nuevoLabel(ListImage, actualValue, panel);
+                System.out.println(actualValue);
+            }
+        };
+        ActionListener actionNext = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                next(ListImage.size());
+                nuevoLabel(ListImage, actualValue, panel);
+                System.out.println(actualValue);
+            }
+        };
+
+        botonPrev.addActionListener(actionPrev);
+        botonNext.addActionListener(actionNext);
+    }
+
+    @Override
+    public void next(int value) {
+        if (actualValue < (value - 1)) {
+            actualValue += 1;
+        } else {
+            actualValue = 0;
+        }
+    }
+
+    @Override
+    public void prev(int value) {
+        if (actualValue > 0) {
+            actualValue -= 1;
+        } else {
+            actualValue = 2;
+        }
     }
 }

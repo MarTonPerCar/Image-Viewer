@@ -1,7 +1,6 @@
 package ImageViewer;
 
 public interface Image {
-    public static int ActualValue = 0;
-    void next();
-    void prev();
+    void next(int value);
+    void prev(int value);
 }
