@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24b1ab49-a7b6-4013-82a0-786fe4832b6f" name="Changes" comment="Redesign of MainFrame plus&#10;chooseDirectory">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ImageViewer/ImageReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/ImageReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/Main.java" afterDir="false" />
+    <list default="true" id="24b1ab49-a7b6-4013-82a0-786fe4832b6f" name="Changes" comment="Design changes">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/MainFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +24,10 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -43,7 +46,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Mario/IdeaProjects/Image-Viewer"
+    "last_opened_file_path": "C:/Users/Mario/IdeaProjects/Image-Viewer2"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -53,7 +56,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Default" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="ImageViewer.Swing.Main" />
       <module name="Image-Viewer" />
       <method v="2">
@@ -150,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706468345606</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Design changes">
+      <option name="closed" value="true" />
+      <created>1706469093657</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706469093657</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,7 +185,8 @@
     <MESSAGE value="Restructuring of Main" />
     <MESSAGE value="Restructuring of MainFrame" />
     <MESSAGE value="Redesign of MainFrame plus&#10;chooseDirectory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redesign of MainFrame plus&#10;chooseDirectory" />
+    <MESSAGE value="Design changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Design changes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Image_Viewer$Main.ic" NAME="Main Coverage Results" MODIFIED="1706455568549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

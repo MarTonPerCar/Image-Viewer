@@ -24,7 +24,7 @@ public class MainFrame extends JFrame implements Image{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        String defaultDirectory = "C:/Users/Mario/IdeaProjects/Image-Viewer/Imagenes";
+        String defaultDirectory = System.getProperty("user.dir") + "/Imagenes";
         inicializarComponentes(defaultDirectory);
     }
 
