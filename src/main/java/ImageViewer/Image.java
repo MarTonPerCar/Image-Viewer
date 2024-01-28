@@ -1,6 +1,6 @@
 package ImageViewer;
 
 public interface Image {
-    Image next();
-    Image prev();
+    void next();
+    void prev();
 }

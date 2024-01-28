@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24b1ab49-a7b6-4013-82a0-786fe4832b6f" name="Changes" comment="First Commit plus creation of Images">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/Image.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/ImageDisplay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/ImageLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Imagenes/Caballo343.jpg" beforeDir="false" />
+    <list default="true" id="24b1ab49-a7b6-4013-82a0-786fe4832b6f" name="Changes" comment="Basic Code Create">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ImageViewer/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageViewer/Swing/MainFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +18,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -43,6 +42,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/Mario/IdeaProjects/Image-Viewer/src/main/java"
   }
@@ -70,7 +70,31 @@
       <option name="project" value="LOCAL" />
       <updated>1706389111534</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="First Commit plus creation of Images">
+      <option name="closed" value="true" />
+      <created>1706395078202</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706395078202</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Creation of Main Classes">
+      <option name="closed" value="true" />
+      <created>1706395121214</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706395121214</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Basic Code Create">
+      <option name="closed" value="true" />
+      <created>1706395319127</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706395319127</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -86,6 +110,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Commit plus creation of Images" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Commit plus creation of Images" />
+    <MESSAGE value="Creation of Main Classes" />
+    <MESSAGE value="Basic Code Create" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic Code Create" />
   </component>
 </project>
