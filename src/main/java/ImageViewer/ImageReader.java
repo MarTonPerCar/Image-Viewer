@@ -13,7 +13,7 @@ public class ImageReader {
 
         if (carpeta.exists() && carpeta.isDirectory()) {
             File[] archivos = carpeta.listFiles();
-            List<String> extensionesImagenes = Arrays.asList("jpg", "jpeg", "png", "gif");
+            List<String> extensionesImagenes = Arrays.asList("jpg", "jpeg", "png");
             for (File archivo : archivos) {
                 if (archivo.isFile() && esImagen(archivo, extensionesImagenes)) {
                     rutasImagenes.add(archivo.getAbsolutePath());

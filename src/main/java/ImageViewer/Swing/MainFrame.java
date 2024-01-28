@@ -1,6 +1,7 @@
 package ImageViewer.Swing;
 
 import ImageViewer.Image;
+import ImageViewer.ImageReader;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,26 +17,34 @@ public class MainFrame extends JFrame implements Image{
     private int actualValue = 0;
     JButton botonPrev = new JButton("Prev");
     JButton botonNext = new JButton("Next");
+    JButton botonDirectory = new JButton("Change Directory");
     JLabel imageLabel = new JLabel();
 
-    public MainFrame(List<String> iP)  {
+    public MainFrame()  {
         this.setTitle("Image Viewer");
         this.setSize(520,420);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        String defaultDirectory = "C:/Users/Mario/IdeaProjects/Image-Viewer/Imagenes";
+        inicializarComponentes(defaultDirectory);
+    }
+
+    private void inicializarComponentes(String defaultDirectory) {
+        List<String> imagePaths = ImageReader.obtenerRutasImagenes(defaultDirectory);
+
         JPanel panel = new JPanel(null);
         panel.setBackground(Color.lightGray);
 
         agregarBotones(panel);
-        agregarAccion(iP, panel);
-        nuevoLabel(iP.get(actualValue), panel);
+        agregarAccion(imagePaths, panel);
+        nuevoLabel(imagePaths.get(actualValue), panel);
     }
 
-    public void nuevoLabel(String imagePath, JPanel panel) {
+    private void nuevoLabel(String imagePath, JPanel panel) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
-            java.awt.Image resizedImage = originalImage.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+            java.awt.Image resizedImage = originalImage.getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH);
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
 
             if (imageLabel != null) {
@@ -43,7 +52,7 @@ public class MainFrame extends JFrame implements Image{
             }
             imageLabel = new JLabel(resizedIcon);
             imageLabel.setBounds(0, 0, resizedIcon.getIconWidth(), resizedIcon.getIconHeight());
-            imageLabel.setLocation(30, 80);
+            imageLabel.setLocation(10, 60);
 
             panel.add(imageLabel);
             panel.revalidate();
@@ -57,14 +66,25 @@ public class MainFrame extends JFrame implements Image{
     private void agregarBotones(JPanel panel) {
         botonNext.setBounds(280, 120, 200, 60);
         botonPrev.setBounds(280, 190, 200, 60);
+        botonDirectory.setBounds(310, 80, 130, 30);
+
+        customizeButton(botonNext);
+        customizeButton(botonPrev);
+        customizeButton(botonDirectory);
 
         panel.add(botonNext);
         panel.add(botonPrev);
+        panel.add(botonDirectory);
 
         add(panel);
     }
 
     private void agregarAccion(List<String> ListImage, JPanel panel) {
+        if (botonPrev.getActionListeners().length != 0) {
+            botonPrev.removeActionListener(botonPrev.getActionListeners()[0]);
+            botonNext.removeActionListener(botonNext.getActionListeners()[0]);
+            botonDirectory.removeActionListener(botonDirectory.getActionListeners()[0]);
+        }
         ActionListener actionPrev = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,8 +100,44 @@ public class MainFrame extends JFrame implements Image{
             }
         };
 
+        ActionListener actionDirectory = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String newDirectory = chooseDirectory();
+                if (newDirectory != null) {
+                    actualValue = 0;
+                    inicializarComponentes(newDirectory);
+                }
+            }
+        };
+
         botonPrev.addActionListener(actionPrev);
         botonNext.addActionListener(actionNext);
+        botonDirectory.addActionListener(actionDirectory);
+    }
+
+    private void customizeButton(JButton button) {
+        button.setBackground(new Color(60, 179, 113));
+        button.setForeground(Color.white);
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createRaisedBevelBorder());
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+    }
+
+    private String chooseDirectory() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        int result = fileChooser.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedDirectoryFile = fileChooser.getSelectedFile();
+            String selectedDirectory = selectedDirectoryFile.getAbsolutePath();
+            return selectedDirectory;
+        } else {
+            JOptionPane.showMessageDialog(this, "Este directorio no se puede usar");
+            return null;
+        }
     }
 
     @Override
@@ -98,7 +154,7 @@ public class MainFrame extends JFrame implements Image{
         if (actualValue > 0) {
             actualValue -= 1;
         } else {
-            actualValue = 2;
+            actualValue = (value - 1);
         }
     }
 }
